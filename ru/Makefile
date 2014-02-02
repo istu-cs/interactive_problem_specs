@@ -1,10 +1,10 @@
 all: main.pdf
 
 %.pdf: %.tex $(wildcard *.tex) $(addsuffix .ps,$(basename $(wildcard *.dot)))
-	xelatex $<
-	xelatex $<
+	xelatex $< || rm $@
+	xelatex $< || rm $@
 
-open:
+open: main.pdf
 	xdg-open $<
 
 %.ps: %.dot

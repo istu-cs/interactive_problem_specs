@@ -1,0 +1,31 @@
+digraph Execution
+{
+    {
+        node[shape=parallelogram];
+        Interactor;
+        Solution;
+        Checker;
+    }
+    {
+        node[shape=note];
+        test;
+        interactor_output[label="Interactor's output"];
+
+        test_[label=test];
+    }
+
+    subgraph cluster_stage1
+    {
+        Interactor->Solution;
+        Solution->Interactor;
+        Interactor->interactor_output;
+        test->Interactor;
+    }
+
+    subgraph cluster_stage2
+    {
+        style=dotted;
+        interactor_output->Checker[style=dotted];
+        test_->Checker;
+    }
+}
